@@ -16,7 +16,7 @@
  ### Architecture
  MVVM(model-view-view model)
  
- ### API CALLS
+ ### API Calls
  - https://pixabay.com/api/?key=API_KEY
  
  - https://pixabay.com/tr/  Get free API key as a member
