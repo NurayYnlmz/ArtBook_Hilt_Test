@@ -5,18 +5,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nurayyenilmez.artbookandhiltexample.model.ImageResponse
-import com.nurayyenilmez.artbookandhiltexample.repo.ArtRepository
+import com.nurayyenilmez.artbookandhiltexample.repo.ArtRepositoryInterface
 import com.nurayyenilmez.artbookandhiltexample.roomdb.Art
 import com.nurayyenilmez.artbookandhiltexample.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import retrofit2.Response
 import javax.inject.Inject
 
 
 @HiltViewModel
 class ArtViewModel  @Inject constructor(
-    private val repository: ArtRepository
+    private val repository:ArtRepositoryInterface
 ):ViewModel(
 ) {
     //Art Fragment
