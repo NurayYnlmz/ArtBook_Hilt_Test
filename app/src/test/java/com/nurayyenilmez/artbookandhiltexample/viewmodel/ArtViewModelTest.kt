@@ -29,8 +29,8 @@ class ArtViewModelTest {
         //Test Doubles(kopyası test edeceğiz)
 
         viewModel= ArtViewModel(FakeArtRepository())
-
     }
+
     @Test
     fun ` insert art without year returns error`(){
         viewModel.makeArt("MonaLisa","Da Vinci","")
