@@ -10,7 +10,7 @@ import javax.inject.Inject
 class ArtFragmentFactory @Inject constructor(
     private val glide:RequestManager,
     private val artRecyclerAdapter: ArtRecyclerAdapter,
-    private val imageRecyclerAdapter: ImageRecyclerAdapter
+  val imageRecyclerAdapter: ImageRecyclerAdapter
 ) :FragmentFactory(){
 
     override fun instantiate(classLoader: ClassLoader, className: String): Fragment {

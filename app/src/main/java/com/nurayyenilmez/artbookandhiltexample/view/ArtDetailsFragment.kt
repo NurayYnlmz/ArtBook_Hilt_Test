@@ -1,5 +1,6 @@
 package com.nurayyenilmez.artbookandhiltexample.view
 
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -7,6 +8,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.RequestManager
 import com.nurayyenilmez.artbookandhiltexample.R
@@ -21,15 +23,17 @@ class ArtDetailsFragment @Inject constructor(
 
     private var viewBinding:FragmentArtsDetailsBinding?=null
 
-    private val detailsViewModel: ArtViewModel by activityViewModels()
-  //  lateinit var viewModel : ArtViewModel
 
+     // var  detailsViewModel: ArtViewModel by  activityViewModels()
+
+      lateinit var viewModel:ArtViewModel
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       // viewModel = ViewModelProvider(requireActivity()).get(ArtViewModel::class.java)
+
+        viewModel = ViewModelProvider(requireActivity()).get(ArtViewModel::class.java)
 
 
         val binding=FragmentArtsDetailsBinding.bind(view)
@@ -49,7 +53,7 @@ class ArtDetailsFragment @Inject constructor(
         requireActivity().onBackPressedDispatcher.addCallback(callBack)
 
         binding.saveButton.setOnClickListener {
-            detailsViewModel.makeArt(
+           viewModel.makeArt(
                 binding.nameText.text.toString(),
                 binding.artistText.text.toString(),
                 binding.yearText.text.toString())
@@ -58,18 +62,18 @@ class ArtDetailsFragment @Inject constructor(
     }
 
     private fun subscribeToObservers() {
-        detailsViewModel.selectedImageUrl.observe(viewLifecycleOwner, Observer { url->
+      viewModel.selectedImageUrl.observe(viewLifecycleOwner, Observer { url->
             viewBinding?.let {
                 glide.load(url).into(it.artImageView)
             }
         })
 
-        detailsViewModel.insertArtMessage.observe(viewLifecycleOwner, Observer {
+      viewModel.insertArtMessage.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
                     Toast.makeText(requireActivity(),"Success",Toast.LENGTH_LONG).show()
                     findNavController().navigateUp()
-                    detailsViewModel.resetInsertArtMsg()
+                   viewModel.resetInsertArtMsg()
                 }
 
                 Status.ERROR -> {

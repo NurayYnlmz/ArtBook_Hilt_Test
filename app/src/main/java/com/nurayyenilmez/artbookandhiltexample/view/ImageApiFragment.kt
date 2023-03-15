@@ -7,6 +7,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -23,16 +24,22 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ImageApiFragment @Inject constructor(
-    private val imageRecyclerAdapter: ImageRecyclerAdapter
+
+    var imageRecyclerAdapter: ImageRecyclerAdapter
+
+
 ):Fragment (R.layout.fragment_img_api) {
 
     private var viewbinding:FragmentImgApiBinding?=null
-    private val ımageApıViewModel : ArtViewModel by activityViewModels()
-     // lateinit var ImageApıViewModel : ArtViewModel
+
+  //  private val ımageApıViewModel : ArtViewModel by activityViewModels()
+     lateinit var ımageApıViewModel : ArtViewModel
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+      ımageApıViewModel= ViewModelProvider(requireActivity()).get(ArtViewModel::class.java)
 
       val binding=FragmentImgApiBinding.bind(view)
         viewbinding=binding

@@ -24,9 +24,9 @@ class ArtFragment @Inject constructor
 
     private var viewBinding:FragmentArtsBinding?=null
 
-      // private val  artViewModel: ArtViewModel by viewModels()
-       private val artViewModel: ArtViewModel by activityViewModels()
-    // lateinit var artViewModel : ArtViewModel
+
+      // private val artViewModel: ArtViewModel by activityViewModels()
+      lateinit var artViewModel : ArtViewModel
 
     private val swipeCallBack = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
         override fun onMove(
@@ -51,7 +51,7 @@ class ArtFragment @Inject constructor
 
         super.onViewCreated(view, savedInstanceState)
 
-      //  artViewModel = ViewModelProvider(requireActivity()).get(ArtViewModel::class.java)
+       artViewModel = ViewModelProvider(requireActivity()).get(ArtViewModel::class.java)
 
         val binding=FragmentArtsBinding.bind(view)
         viewBinding=binding
